@@ -3,4 +3,6 @@
     <string name="retry">Retry</string>
     <string name="go">Go!</string>
     <string name="share">Share</string>
+    <string name="share_image">Share Image</string>
+    <string name="share_subject">Check out this picture!</string>
 </resources>

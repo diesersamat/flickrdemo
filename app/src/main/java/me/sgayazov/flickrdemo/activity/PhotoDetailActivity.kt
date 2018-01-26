@@ -14,15 +14,15 @@ import me.sgayazov.flickrdemo.networking.ImageLoader
 
 class PhotoDetailActivity : AppCompatActivity() {
 
+    //it would be even better to pass only photo's id in extras and request full object from network/database
+    private lateinit var photo: Photo
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_detail)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        if (savedInstanceState == null) {
-            val photo = intent.getParcelableExtra<Photo>(PHOTO_EXTRA)
-            ImageLoader.loadImage(this, photo.url_m, image)
-        }
+        photo = intent.getParcelableExtra(PHOTO_EXTRA)
+        ImageLoader.loadImage(this, photo.url_o, image)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -36,6 +36,22 @@ class PhotoDetailActivity : AppCompatActivity() {
                     NavUtils.navigateUpTo(this, Intent(this, PhotosListActivity::class.java))
                     true
                 }
+                R.id.menu_item_share -> {
+                    shareImage()
+                    true
+                }
+                R.id.menu_item_download -> {
+                    NavUtils.navigateUpTo(this, Intent(this, PhotosListActivity::class.java))
+                    true
+                }
                 else -> super.onOptionsItemSelected(item)
             }
+
+    private fun shareImage() {
+        val i = Intent(Intent.ACTION_SEND)
+        i.type = "text/plain"
+        i.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_subject))
+        i.putExtra(Intent.EXTRA_TEXT, photo.url_o)
+        startActivity(Intent.createChooser(i, getString(R.string.share_image)))
+    }
 }
