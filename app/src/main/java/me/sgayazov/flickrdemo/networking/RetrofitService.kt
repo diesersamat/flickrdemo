@@ -11,6 +11,6 @@ interface RetrofitService {
     @GET("/services/rest/?method=flickr.tags.getHotList")
     fun getTopTagsList(@Query("count") count: Int): Observable<TagsWrapper>
 
-    @GET("/services/rest/?method=flickr.photos.search&extras=url_m,url_o")
+    @GET("/services/rest/?method=flickr.photos.search&extras=url_m,url_c")
     fun searchForPhotos(@Query("tags") tags: String): Observable<PhotosWrapper>
 }

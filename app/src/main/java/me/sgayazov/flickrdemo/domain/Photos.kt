@@ -19,10 +19,12 @@ class PhotoList(
 class Photo(
         val id: String,
         val title: String,
+        val owner: String,
         val url_m: String,
-        val url_o: String
+        val url_c: String
 ) : Parcelable {
     constructor(source: Parcel) : this(
+            source.readString(),
             source.readString(),
             source.readString(),
             source.readString(),
@@ -34,8 +36,9 @@ class Photo(
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
         writeString(id)
         writeString(title)
+        writeString(owner)
         writeString(url_m)
-        writeString(url_o)
+        writeString(url_c)
     }
 
     companion object {
