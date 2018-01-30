@@ -1,5 +1,6 @@
 package me.sgayazov.flickrdemo.presenter
 
+import android.app.Application
 import io.reactivex.disposables.Disposable
 import me.sgayazov.flickrdemo.dataprovider.Interactor
 

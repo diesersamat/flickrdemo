@@ -50,6 +50,11 @@ dependencies {
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
 
     compile 'com.squareup.picasso:picasso:2.5.2'
+
+
+    implementation "android.arch.persistence.room:runtime:1.1.0-alpha1"
+    kapt "android.arch.persistence.room:compiler:1.1.0-alpha1"
+    implementation "android.arch.persistence.room:rxjava2:1.1.0-alpha1"
 }
 repositories {
     mavenCentral()

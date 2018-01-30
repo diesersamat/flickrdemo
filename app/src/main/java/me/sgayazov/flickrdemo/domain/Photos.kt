@@ -4,26 +4,30 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class PhotosWrapper(
-        val photos: PhotoList,
-        val stat: String
+        val photos: PhotoList
 )
 
 class PhotoList(
-        val page: Int,
-        val pages: String,
-        val perpage: Int,
-        val total: String,
         val photo: List<Photo>
 )
 
+//@Entity
 class Photo(
+//        @PrimaryKey
         val id: String,
+//        @ColumnInfo(name = "title")
         val title: String,
+//        @ColumnInfo(name = "owner")
         val owner: String,
+//        @ColumnInfo(name = "url_m")
         val url_m: String,
-        val url_c: String
+//        @ColumnInfo(name = "url_c")
+        val url_c: String,
+//        @ColumnInfo(name = "tags")
+        val tags: String
 ) : Parcelable {
     constructor(source: Parcel) : this(
+            source.readString(),
             source.readString(),
             source.readString(),
             source.readString(),
@@ -39,6 +43,7 @@ class Photo(
         writeString(owner)
         writeString(url_m)
         writeString(url_c)
+        writeString(tags)
     }
 
     companion object {

@@ -1,6 +1,5 @@
 package me.sgayazov.flickrdemo.dataprovider
 
-import io.reactivex.Observable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.toObservable
@@ -35,21 +34,16 @@ class Interactor {
 
     //todo maybe support paging for photos later
     private fun searchForPhotos(query: String): Single<PhotosWrapper> {
-        return Observable
-                .concat(cacheDataProvider.searchForPhotos(query),
-                        networkDataProvider.searchForPhotos(query)
-                                .doOnNext({ cacheDataProvider.savePhotosList(it, query) }))
-                .firstOrError()
+//                .concat(cacheDataProvider.searchForPhotos(query),
+        return networkDataProvider.searchForPhotos(query)
+//                                .doOnSuccess({ cacheDataProvider.savePhotosList(it, query) }))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }
 
     private fun getTopTagsList(): Single<TagsWrapper> {
-        return Observable
-                .concat(cacheDataProvider.getTopTagsList(),
-                        networkDataProvider.getTopTagsList(MAX_CATEGORIES_COUNT)
-                                .doOnNext({ cacheDataProvider.saveTopTagsList(it) }))
-                .firstOrError()
+        return networkDataProvider.getTopTagsList(MAX_CATEGORIES_COUNT)
+//                                .doOnNext({ cacheDataProvider.saveTopTagsList(it) }))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

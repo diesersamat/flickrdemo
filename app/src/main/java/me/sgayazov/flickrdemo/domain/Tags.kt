@@ -4,17 +4,16 @@ import com.google.gson.annotations.SerializedName
 
 
 class TagsWrapper(
-        val hottags: TagList,
-        val stat: String
+        val hottags: TagList
 )
 
 class TagList(
-        val period: String,
-        val count: Int,
         val tag: List<Tag>
 )
 
+//
+//@Entity
 class Tag(
-        @SerializedName("_content") val content: String,
-        val score: String
+//        @PrimaryKey
+        @SerializedName("_content") val content: String
 )

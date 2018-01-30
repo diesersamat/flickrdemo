@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 private const val BASE_URL = "https://api.flickr.com"
-private const val API_KEY = "42f2bdb87a29e9850227c697b1063afa"
+private const val API_KEY = "40be3e389adaf4279b856f261b0ea991"
 
 class NetworkDataProvider {
 

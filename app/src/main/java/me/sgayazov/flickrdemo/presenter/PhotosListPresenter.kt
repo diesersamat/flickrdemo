@@ -1,5 +1,6 @@
 package me.sgayazov.flickrdemo.presenter
 
+import android.app.Application
 import me.sgayazov.flickrdemo.activity.PhotosListView
 import me.sgayazov.flickrdemo.domain.PhotosWrapper
 
